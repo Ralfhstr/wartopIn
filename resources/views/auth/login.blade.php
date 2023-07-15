@@ -14,7 +14,8 @@
               <div class="col-md-6 col-lg-7 d-flex align-items-center">
                 <div class="card-body p-4 p-lg-5 text-black">
 
-                  <form>
+                  <form method="POST" action="{{ route('login') }}">
+                    @csrf
 
                     <div class="d-flex align-items-center mb-3 pb-1">
                       <span class="h2 fw-bold mb-0">Wartop.in</span>
@@ -60,7 +61,8 @@
 
 
                     <div class="pt-1 mb-4">
-                      <button class="btn btn-dark btn-lg btn-block" type="submit">{{__('Login')}}</button>
+                      <button class="btn btn-dark btn-lg btn-block" type="submit">
+                        {{__('Login')}}</button>
                     </div>
 
                     @if (Route::has('password.request'))
