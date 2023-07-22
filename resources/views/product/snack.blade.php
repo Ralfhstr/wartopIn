@@ -96,13 +96,13 @@
                 </div>
                 <hr>
                 <div class="row">
-                    @foreach ($products as $product)
+                    @foreach ($snacks as $snack)
                         <div class="card" style="width: 18rem;">
-                            <img src="{{ $product->pphoto }}" class="card-img-top" alt="...">
+                            <img src="{{ $snack->pphoto }}" class="card-img-top" alt="...">
                             <div class="card-body">
-                            <h5 class="card-title">{{ $product->pname }}</h5>
-                            <p class="card-text">{{ $product->pprice }}</p>
-                            <p class="btn-holder"><a href="{{ route('add_to_cart', $product->id) }}" class="btn btn-primary btn-block text-center" role="button">Add to cart</a> </p>
+                            <h5 class="card-title">{{ $snack->pname }}</h5>
+                            <p class="card-text">{{ $snack->pprice }}</p>
+                            <p class="btn-holder"><a href="{{ route('add_to_cart', $snack->id) }}" class="btn btn-primary btn-block text-center" role="button">Add to cart</a> </p>
                             </div>
                         </div>
                     @endforeach
@@ -112,3 +112,4 @@
     </div>
 </div>
 @endsection
+

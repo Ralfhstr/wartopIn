@@ -18,18 +18,21 @@ class ProductSeeder extends Seeder
                 'pname' => 'Ayam Geprek',
                 'pprice' => 'Rp. 10.000',
                 'pqty'=> '20',
+                'pphoto'=> 'prek.jpg',
                 'type_id' => 1
             ],
             [
                 'pname' => 'Pop Ice',
                 'pprice' => 'Rp. 4.000',
                 'pqty'=> '20',
+                'pphoto'=> 'pop.jpg',
                 'type_id' => 2
             ],
             [
                 'pname' => 'Basreng',
                 'pprice' => 'Rp. 8.000',
                 'pqty'=> '20',
+                'pphoto'=> 'prek.jpg',
                 'type_id' => 3
             ],
         ]);
