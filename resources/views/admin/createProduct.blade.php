@@ -128,9 +128,9 @@
                                 @enderror
                             </div>
                             <div class="col-md-6 mb-3">
-                                <label for="pQty" class="form-label">Quantity</label>
-                                <input class="form-control @error('pQty') is-invalid @enderror" type="text" name="pQty" id="pQty" value="{{ old('pQty') }}" placeholder="Enter pQty">
-                                @error('pQty')
+                                <label for="pDesc" class="form-label">Quantity</label>
+                                <input class="form-control @error('pDesc') is-invalid @enderror" type="text" name="pDesc" id="pDesc" value="{{ old('pDesc') }}" placeholder="Enter pDesc">
+                                @error('pDesc')
                                     <div class="text-danger"><small>{{ $message }}</small></div>
                                 @enderror
                             </div>

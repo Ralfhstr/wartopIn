@@ -69,8 +69,9 @@ class ProductController extends Controller
     {
         $product = New Product;
         $product->pname = $request->pName;
+        $product->pdesc = $request->pDesc;
         $product->pprice = $request->pPrice;
-        $product->pqty = $request->pQty;
+        // $product->pqty = $request->pQty;
         $product->pphoto = $request->pPhoto;
         $product->type_id = $request->type;
 

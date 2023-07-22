@@ -16,7 +16,7 @@ class TransactionSeeder extends Seeder
         DB::table('transactions')->insert([
             [
                 'user_id' => 1,
-                'product_id' => 7,
+                'product_id' => 4,
                 'tqty'=> '20',
                 'payment_id'=> 1,
                 'status_id' => 1
