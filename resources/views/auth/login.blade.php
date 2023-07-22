@@ -1,7 +1,12 @@
-@vite(['resources/sass/app.scss'])
+@extends('layouts.app')
 
-<section class="vh-100" style="background-color: #ff953c;">
-    <div class="container py-4 h-100">
+@section('content')
+<style>
+    body {
+        background-color: #ff953c;;
+    }
+</style>
+    <div class="container-sm my-5 py-5">
       <div class="row d-flex justify-content-center align-items-center h-100">
         <div class="col col-xl-10">
           <div class="card " style="background-color:#d8d8d8">
@@ -82,4 +87,4 @@
         </div>
       </div>
     </div>
-  </section>
+@endsection

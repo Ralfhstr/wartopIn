@@ -111,12 +111,12 @@
                 </div>
                 <hr>
                 <div class="row">
-                    @foreach ($products as $product)
+                    @foreach ($drinks as $drink)
                         <div class="card" style="width: 18rem;">
-                            <img src="{{ $product->pphoto }}" class="card-img-top" alt="...">
+                            <img src="{{ $drink->pphoto }}" class="card-img-top" alt="...">
                             <div class="card-body">
-                            <h5 class="card-title">{{ $product->pname }}</h5>
-                            <p class="card-text">{{ $product->pprice }}</p>
+                            <h5 class="card-title">{{ $drink->pname }}</h5>
+                            <p class="card-text">{{ $drink->pprice }}</p>
                             <a href="#" class="btn btn-primary">Go somewhere</a>
                             </div>
                         </div>

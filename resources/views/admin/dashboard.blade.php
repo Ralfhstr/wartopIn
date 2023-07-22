@@ -55,6 +55,10 @@
                         <a href="{{ route('products.snack') }}" class="nav-link px-0 align-middle">
                             <i class="fs-4 bi-table"></i> <span class="ms-1 d-none d-sm-inline">Snacks</span></a>
                     </li>
+                    <li>
+                        <a href="{{ route('transactions.index') }}" class="nav-link px-0 align-middle">
+                            <i class="fs-4 bi-table"></i> <span class="ms-1 d-none d-sm-inline">Transaction</span></a>
+                    </li>
                     {{-- <li>
                         <a href="#submenu2" data-bs-toggle="collapse" class="nav-link px-0 align-middle ">
                             <i class="fs-4 bi-bootstrap"></i> <span class="ms-1 d-none d-sm-inline">Bootstrap</span></a>
@@ -102,52 +106,47 @@
                 </div>
             </div>
         </div>
-        <div class="col py-3">
-            <div class="container mt-4">
-                <div class="row mb-0">
-                    <div class="col-lg-9 col-xl-6">
-                        <h4 class="mb-3">{{ $pageTitle }}</h4>
-                    </div>
+        <div class="container mt-4">
+            <div class="row mb-0">
+                <div class="col-lg-9 col-xl-6">
+                    <h4 class="mb-3">{{ $pageTitle }}</h4>
                 </div>
-                <hr>
-                <div class="row">
-                    @foreach ($products as $product)
-                        <div class="card" style="width: 18rem;">
-                            <img src="{{ $product->pphoto }}" class="card-img-top" alt="...">
-                            <div class="card-body">
-                            <h5 class="card-title">{{ $product->pname }}</h5>
-                            <p class="card-text">{{ $product->pprice }}</p>
-                            <a href="#" class="btn btn-primary">Go somewhere</a>
-                            </div>
-                        </div>
-                    @endforeach
+                <div class="col-lg-3 col-xl-6">
+                        <li class="list-inline-item">
+                            <a href="{{ route('products.create') }}" class="btn btn-primary">
+                                <i class="bi bi-plus-circle me-1"></i> Create Product
+                            </a>
+                        </li>
+                    </ul>
                 </div>
+            </div>
+            <hr>
+            <div class="table-responsive border p-3 rounded-3">
+                <table class="table table-bordered table-hover table-striped mb-0 bg-white">
+                    <thead>
+                        <tr>
+                            <th>User Name</th>
+                            <th>Product Name</th>
+                            <th>Quantity</th>
+                            <th>Payment</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($transactions as $transaction)
+                            <tr>
+                                <td>{{ $transaction->user->name }}</td>
+                                <td>{{ $transaction->product->pname }}</td>
+                                <td>{{ $transaction->tqty }}</td>
+                                <td>{{ $transaction->payment->pyname }}</td>
+                                <td>{{ $transaction->status->stname }}</td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>
 </div>
 @endsection
 
-{{-- @extends('layouts.app')
-
-@section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Dashboard') }}</div>
-
-                <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
-
-                    {{ __('You are logged in!') }}
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-@endsection --}}
