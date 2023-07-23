@@ -15,6 +15,10 @@ return new class extends Migration
             $table->string('uphone')->after('name');
             $table->string('level')->after('remember_token');
         });
+
+        Schema::table('products', function (Blueprint $table) {
+            $table->string('pphoto')->after('pqty');
+        });
     }
 
     /**
@@ -25,6 +29,10 @@ return new class extends Migration
         Schema::table('users', function (Blueprint $table) {
             $table->string('uphone')->after('name');
             $table->string('level')->after('remember_token');
+        });
+
+        Schema::table('products', function (Blueprint $table) {
+            $table->string('pphoto')->after('pqty');
         });
     }
 };

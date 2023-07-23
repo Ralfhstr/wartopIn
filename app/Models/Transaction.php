@@ -19,6 +19,16 @@ class Transaction extends Model
         return $this->belongsTo(Payment::class);
     }
 
+    public function product()
+    {
+        return $this->belongsTo(Product::class);
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
     //get data
     //$transaksi = Transaksi::find(1);
     //$status = $transaksi->status;
