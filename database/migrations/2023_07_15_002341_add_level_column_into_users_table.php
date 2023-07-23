@@ -12,9 +12,11 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('users', function (Blueprint $table) {
+            $table->string('uphone')->after('name');
             $table->string('level')->after('remember_token');
         });
     }
+    
 
     /**
      * Reverse the migrations.
@@ -22,6 +24,7 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('users', function (Blueprint $table) {
+            $table->string('uphone')->after('name');
             $table->string('level')->after('remember_token');
         });
     }

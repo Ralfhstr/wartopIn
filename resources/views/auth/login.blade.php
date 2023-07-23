@@ -1,7 +1,12 @@
-@vite(['resources/sass/app.scss'])
+@extends('layouts.app')
 
-<section class="vh-100" style="background-color: #ff953c;">
-    <div class="container py-4 h-100">
+@section('content')
+<style>
+    body {
+        background-color: #ff953c;;
+    }
+</style>
+    <div class="container-sm my-5 py-5">
       <div class="row d-flex justify-content-center align-items-center h-100">
         <div class="col col-xl-10">
           <div class="card " style="background-color:#d8d8d8">
@@ -14,7 +19,8 @@
               <div class="col-md-6 col-lg-7 d-flex align-items-center">
                 <div class="card-body p-4 p-lg-5 text-black">
 
-                  <form>
+                  <form method="POST" action="{{ route('login') }}">
+                    @csrf
 
                     <div class="d-flex align-items-center mb-3 pb-1">
                       <span class="h2 fw-bold mb-0">Wartop.in</span>
@@ -60,7 +66,8 @@
 
 
                     <div class="pt-1 mb-4">
-                      <button class="btn btn-dark btn-lg btn-block" type="submit">{{__('Login')}}</button>
+                      <button class="btn btn-dark btn-lg btn-block" type="submit">
+                        {{__('Login')}}</button>
                     </div>
 
                     @if (Route::has('password.request'))
@@ -80,4 +87,4 @@
         </div>
       </div>
     </div>
-  </section>
+@endsection
