@@ -65,17 +65,45 @@
                         </a>
                     </li>
                 </ul>
-                <hr>
-                {{-- <div class="dropdown pb-4">
-                    <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
-                        <li class="nav-item">
-                            <div class="d-flex align-items-center nav-link">
-                                <h1><i class="bi bi-basket2-fill text-dark px-2"></i></h1>
-                                <span class="ms-1 d-none d-sm-inline text-white"><h3 class="mb-0">Cart</h3></span>
+                <div>
+                    <div class="d-flex align-items-center nav-link" data-bs-toggle="modal" data-bs-target="#cartModal">
+                        <h1><i class="bi bi-basket2-fill text-dark px-2"></i></h1>
+                        <span class="ms-1 d-none d-sm-inline text-white"><h3 class="mb-0">Cart</h3></span>
+                        <h5><span class="badge bg-warning">{{ count((array) session('cart')) }}</span></h5>
+                    </div>
+                </div>
+                <div class="modal fade" id="cartModal" tabindex="-1" aria-labelledby="cartModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title text-success" id="cartModalLabel">Detail Cart</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
-                        </li>
-                    </ul>
-                </div> --}}
+                            <div class="modal-body">
+
+                                @if(session('cart'))
+                                    @foreach(session('cart') as $id => $details)
+                                        <div class="row cart-detail">
+                                            <div class="col-lg-4 col-sm-4 col-4 cart-detail-img">
+                                                <img src="{{ asset('img') }}/{{ $details['pphoto'] }}" />
+                                            </div>
+                                            <div class="col-lg-8 col-sm-8 col-8 cart-detail-product">
+                                                <h4 class="font-weight-normal text-dark">{{ $details['pname'] }}</h4>
+                                                <span class="count">{{ $details['qty'] }}x</span>
+                                                <b><span class="count font-weight-bold text-success"> Rp.{{ $details['pprice'] }}</span></b>
+                                            </div>
+                                        </div>
+                                    @endforeach
+                                @endif
+                                <div class="row">
+                                    <div class="col-lg-12 col-sm-12 col-12 text-center checkout">
+                                        <a href="{{ route('transactions.create') }}" class="btn btn-primary btn-block">Check Out</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
