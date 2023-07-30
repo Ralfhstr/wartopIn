@@ -25,10 +25,6 @@ class ProductController extends Controller
         return view('admin.product', compact('pageTitle', 'products'));
     }
 
-    public function cart()
-    {
-        return view('product.cart');
-    }
     public function addToCart($id)
     {
         $product = Product::findOrFail($id);

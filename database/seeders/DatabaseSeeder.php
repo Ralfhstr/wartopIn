@@ -15,10 +15,10 @@ class DatabaseSeeder extends Seeder
         $this->call([
             // PaymentSeeder::class,
             // ProductSeeder::class,
-            // StatusSeeder::class,
+            StatusSeeder::class,
             // TransactionSeeder::class,
             // TypeSeeder::class,
-            UserSeeder::class,
+            // UserSeeder::class,
         ]);
     }
 }

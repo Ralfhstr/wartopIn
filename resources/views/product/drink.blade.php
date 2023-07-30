@@ -11,7 +11,7 @@
                 <div class="col-lg-9 col-xl-6">
                     <h4 class="mb-3">{{ $pageTitle }}</h4>
                 </div>
-                <div class="dropdown">
+                {{-- <div class="dropdown">
 
                     <button id="dLabel" type="button" class="btn btn-primary" data-bs-toggle="dropdown">
                         <i class="fa fa-shopping-cart" aria-hidden="true"></i> Cart <span class="badge bg-danger">{{ count((array) session('cart')) }}</span>
@@ -46,7 +46,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> --}}
                 <br/>
                 <div class="container">
                     @if(session('success'))
@@ -62,10 +62,11 @@
                 @foreach ($drinks as $drink)
                     <div class="card" style="width: 18rem;">
                         <img src="{{ $drink->pphoto }}" class="card-img-top" alt="...">
-                        <div class="card-body">
-                        <h5 class="card-title">{{ $drink->pname }}</h5>
-                        <p class="card-text">{{ $drink->pprice }}</p>
-                        <p class="btn-holder"><a href="{{ route('add_to_cart', $drink->id) }}" class="btn btn-primary btn-block text-center" role="button">Add to cart</a> </p>
+                        <div class="card-body text-center">
+                            <h3 class="card-title">{{ $drink->pname }}</h3>
+                            <p class="card-text">{{ $drink->pdesc }}</p>
+                            <p class="card-text">Rp.{{ $drink->pprice }}</p>
+                            <p class="btn-holder"><a href="{{ route('add_to_cart', $drink->id) }}" class="btn btn-primary btn-block text-center" role="button">Add to cart</a></p>
                         </div>
                     </div>
                 @endforeach

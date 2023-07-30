@@ -44,7 +44,8 @@ Route::get('/success', [StripeController::class, 'success'])->name('success');
 Route::get('/cancel', [StripeController::class, 'cancel'])->name('cancel');
 
 Route::get('/', [ProductController::class, 'index']);
-Route::get('cart', [ProductController::class, 'cart'])->name('cart');
 Route::get('add-to-cart/{id}', [ProductController::class, 'addToCart'])->name('add_to_cart');
 Route::patch('update-cart', [ProductController::class, 'updateCart'])->name('update_cart');
 Route::delete('remove-from-cart', [ProductController::class, 'removeCart'])->name('remove_from_cart');
+
+Route::post('/transactions', [TransactionController::class, 'store'])->name('transactions.store');
