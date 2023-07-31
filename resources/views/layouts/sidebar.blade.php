@@ -7,6 +7,11 @@
     .nav-link:hover h1, .nav-link:hover h3 {
         color: #ff953c; /* Ganti dengan warna teks yang diinginkan saat di-hover */
     }
+
+    .dropdown-menu {
+        transform-origin: top right;
+        transition: transform 0.1s ease;
+        }
 </style>
 
 {{-- Side Nav --}}
@@ -18,13 +23,14 @@
                 <ul class="navbar-nav">
                     <img src="profile.png" alt="hugenerd" width="130" height="130" class="rounded-circle mx-3 my-3">
                     <!-- Authentication Links -->
-                    <li class="nav-item dropdown d-flex align-items-center">
-                        <span style="width: 60px;"> </span>
-                            <h5 class="mb-0 mr-2 text-dark align-text-center">{{ Auth::user()->name }}</h5>
-                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                            aria-haspopup="true" aria-expanded="false" v-pre></a>
+                <li class="nav-item dropdown d-flex align-items-center">
+                    <span style="width: 60px;"> </span>
+                        <h5 class="mb-0 mr-2 text-dark align-text-center">{{ Auth::user()->name }}</h5>
+                        <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false" v-pre>
+                        </a>
                         <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item text-danger" href="{{ route('logout') }}"
+                            <a class="dropdown-item text-danger align-text-center" href="{{ route('logout') }}"
                                 onclick="event.preventDefault();
                                              document.getElementById('logout-form').submit();">
                                 <i class="bi bi-lock"></i>{{ __('Logout') }}
@@ -108,4 +114,7 @@
         </div>
     </div>
 </div>
+<<<<<<< HEAD
 @endauth
+=======
+>>>>>>> aa8db68c0efc88a675d8113e3d1585b37badc744

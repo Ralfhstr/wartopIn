@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('pphoto')->after('pqty');
         });
     }
+    
 
     /**
      * Reverse the migrations.
