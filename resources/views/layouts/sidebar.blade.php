@@ -19,10 +19,10 @@
                     <img src="profile.png" alt="hugenerd" width="130" height="130" class="rounded-circle mx-3 my-3">
                     <!-- Authentication Links -->
                     <li class="nav-item dropdown d-flex align-items-center">
-                        <h5 class="mb-0 mr-2 text-dark align-text-center">{{ Auth::user()->name }}</h5>
-                        <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                        aria-haspopup="true" aria-expanded="false" v-pre>
-                        </a>
+                        <span style="width: 60px;"> </span>
+                            <h5 class="mb-0 mr-2 text-dark align-text-center">{{ Auth::user()->name }}</h5>
+                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false" v-pre></a>
                         <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item text-danger" href="{{ route('logout') }}"
                                 onclick="event.preventDefault();
