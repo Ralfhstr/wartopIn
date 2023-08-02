@@ -1,31 +1,7 @@
 {{-- @extends('layouts.app')
 
-{{-- @section('content') --}}
-<!doctype html>
-<html>
-<head>
-</head>
-<body>
-    <div class="card text-center" style="width: 300px;">
-        <div class="card-header h5 text-white bg-primary">Password Reset</div>
-        <div class="card-body px-5">
-            <p class="card-text py-2">
-                Enter your email address and we'll send you an email with instructions to reset your password.
-            </p>
-            <div class="form-outline">
-                <input type="email" id="typeEmail" class="form-control my-3" />
-                <label class="form-label" for="typeEmail">Email input</label>
-            </div>
-            <a href="#" class="btn btn-primary w-100">Reset password</a>
-            <div class="d-flex justify-content-between mt-4">
-                <a class="" href="#">Login</a>
-                <a class="" href="#">Register</a>
-            </div>
-        </div>
-    </div>
-</body>
-</html>
-{{-- <div class="container">
+@section('content')
+<div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
@@ -69,7 +45,6 @@
             </div>
         </div>
     </div>
-<<<<<<< HEAD
 </div>
 @endsection --}}
 
@@ -97,7 +72,3 @@
     </div>
 </body>
 </html>
-=======
-</div> --}}
-@endsection
->>>>>>> aa8db68c0efc88a675d8113e3d1585b37badc744

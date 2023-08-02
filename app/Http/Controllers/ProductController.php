@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
+use App\Models\Transaction;
 use App\Models\Type;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class ProductController extends Controller
 {
@@ -21,6 +24,10 @@ class ProductController extends Controller
         $pageTitle = 'Product List';
 
         $products = Product::all();
+
+        confirmDelete();
+
+        // $this->middleware('admin')->only('index');
 
         return view('admin.product', compact('pageTitle', 'products'));
     }
@@ -111,14 +118,28 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
+        $file = $request->file('pPhoto');
+
+        if ($file != null) {
+            $Pphoto = $file->getClientOriginalName();
+
+            // Store File
+            $file->storeAs('public/images', $Pphoto);
+        }
+
         $product = New Product;
         $product->pname = $request->pName;
         $product->pdesc = $request->pDesc;
         $product->pprice = $request->pPrice;
-        $product->pphoto = $request->pPhoto;
         $product->type_id = $request->type;
 
+        if ($file != null) {
+            $product->pphoto = $Pphoto;
+        }
+
         $product->save();
+
+        Alert::success('Added Successfully', 'Product Data Added Successfully.');
 
         return redirect()->route('products.index');
     }
@@ -128,7 +149,11 @@ class ProductController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $pageTitle = 'Product Detail';
+
+        $product = Product::find($id);
+
+        return view('admin.showProduct', compact('pageTitle', 'product'));
     }
 
     /**
@@ -136,7 +161,13 @@ class ProductController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $pageTitle = 'Product Edit';
+
+        $types = Type::all();
+
+        $product = Product::find($id);
+
+        return view('admin.editProduct', compact('pageTitle', 'types', 'product'));
     }
 
     /**
@@ -144,7 +175,33 @@ class ProductController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $product = Product::find($id);
+        $product->pname = $request->pName;
+        $product->pdesc = $request->pDesc;
+        $product->pprice = $request->pPrice;
+        $product->type_id = $request->type;
+
+        $file = $request->file('pPhoto');
+
+        if ($file != null) {
+            if ($product->Pphoto) {
+                Storage::delete('public/images/' . $product->Pphoto);
+            }
+            $Pphoto = $file->getClientOriginalName();
+
+            // Store File
+            $file->storeAs('public/images', $Pphoto);
+        }
+
+        if ($file != null) {
+            $product->pphoto = $Pphoto;
+        }
+
+        $product->save();
+
+        Alert::success('Changed Successfully', 'Product Data Changed Successfully.');
+
+        return redirect()->route('products.index');
     }
 
     /**
@@ -152,6 +209,16 @@ class ProductController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $product = Product::find($id);
+
+        if ($product->Pphoto) {
+            Storage::delete('public/images/' . $product->Pphoto);
+        }
+
+        $product->delete();
+
+        Alert::success('Deleted Successfully', 'Product Data Deleted Successfully.');
+
+        return redirect()->route('products.index');
     }
 }

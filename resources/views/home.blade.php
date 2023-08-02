@@ -11,7 +11,7 @@
                 <div class="col-lg-9 col-xl-6">
                     <h4 class="mb-3">{{ $pageTitle }}</h4>
                 </div>
-                <div class="dropdown">
+                {{-- <div class="dropdown">
 
                     <button id="dLabel" type="button" class="btn btn-primary" data-bs-toggle="dropdown">
                         <i class="fa fa-shopping-cart" aria-hidden="true"></i> Cart <span class="badge bg-danger">{{ count((array) session('cart')) }}</span>
@@ -46,7 +46,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> --}}
                 <br/>
                 <div class="container">
                     @if(session('success'))
@@ -72,4 +72,5 @@
             </div>
         </div>
     </div>
+</div>
 @endsection

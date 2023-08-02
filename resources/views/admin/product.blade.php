@@ -24,12 +24,22 @@
             <hr>
             <div class="row">
                 @foreach ($products as $product)
-                    <div class="card" style="width: 18rem;">
-                        <img src="{{ $product->pphoto }}" class="card-img-top" alt="...">
+                    <div class="card datatable" style="width: 18rem;">
+                        <img src="{{ asset('storage/images/' . $product->pphoto) }}" class="card-img-top" alt="...">
                         <div class="card-body">
                         <h5 class="card-title">{{ $product->pname }}</h5>
                         <p class="card-text">{{ $product->pprice }}</p>
-                        <p class="btn-holder"><a href="{{ route('add_to_cart', $product->id) }}" class="btn btn-primary btn-block text-center" role="button">Add to cart</a> </p>
+                        <a href="{{ route('products.show', ['product' => $product->id]) }}" class="btn btn-outline-dark btn-sm me-2"><i class="fa-solid fa-circle-info"></i></a>
+                        <a href="{{ route('products.edit', ['product' => $product->id]) }}" class="btn btn-outline-dark btn-sm me-2"><i class="bi-pencil-square"></i></a>
+                        <div>
+                            <form action="{{ route('products.destroy', ['product' => $product->id]) }}" method="POST">
+                                @csrf
+                                @method('delete')
+                                <button type="submit" class="btn btn-outline-dark btn-sm me-2 btn-delete" data-name="{{ $product->pname }}">
+                                    <i class="bi-trash"></i>
+                                </button>
+                            </form>
+                        </div>
                         </div>
                     </div>
                 @endforeach

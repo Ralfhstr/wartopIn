@@ -15,24 +15,12 @@ class TypeSeeder extends Seeder
     {
         DB::table('types')->insert([
             [
-<<<<<<< HEAD
                 'tyname' => 'makanan berat'
             ],
             [
                 'tyname' => 'minuman'
             ],
             [
-=======
-                'id' => 1,
-                'tyname' => 'makanan berat'
-            ],
-            [
-                'id' => 2,
-                'tyname' => 'minuman'
-            ],
-            [
-                'id' => 3,
->>>>>>> aa8db68c0efc88a675d8113e3d1585b37badc744
                 'tyname' => 'makanan ringan'
             ],
         ]);
