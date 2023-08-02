@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
+use App\Models\Transaction;
 use App\Models\Type;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
 {
@@ -23,6 +25,50 @@ class ProductController extends Controller
         $products = Product::all();
 
         return view('admin.product', compact('pageTitle', 'products'));
+    }
+
+    public function addToCart($id)
+    {
+        $product = Product::findOrFail($id);
+
+        $cart = session()->get('cart', []);
+
+        if(isset($cart[$id])) {
+            $cart[$id]['qty']++;
+        }  else {
+            $cart[$id] = [
+                "pname" => $product->pname,
+                "pdesc" => $product->pdesc,
+                "pphoto" => $product->pphoto,
+                "pprice" => $product->pprice,
+                "qty" => 1
+            ];
+        }
+
+        session()->put('cart', $cart);
+        return redirect()->back()->with('success', 'Product add to cart successfully!');
+    }
+
+    public function updateCart(Request $request)
+    {
+        if($request->id && $request->qty){
+            $cart = session()->get('cart');
+            $cart[$request->id]["qty"] = $request->qty;
+            session()->put('cart', $cart);
+            session()->flash('success', 'Cart successfully updated!');
+        }
+    }
+
+    public function removeCart(Request $request)
+    {
+        if($request->id) {
+            $cart = session()->get('cart');
+            if(isset($cart[$request->id])) {
+                unset($cart[$request->id]);
+                session()->put('cart', $cart);
+            }
+            session()->flash('success', 'Product successfully removed!');
+        }
     }
 
     public function food()
@@ -67,13 +113,24 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
+        $file = $request->file('pPhoto');
+
+        if ($file != null) {
+            $Pphoto = $file->getClientOriginalName();
+
+            // Store File
+            $file->storeAs('public/images', $Pphoto);
+        }
+
         $product = New Product;
         $product->pname = $request->pName;
         $product->pdesc = $request->pDesc;
         $product->pprice = $request->pPrice;
-        // $product->pqty = $request->pQty;
-        $product->pphoto = $request->pPhoto;
         $product->type_id = $request->type;
+
+        if ($file != null) {
+            $product->pphoto = $Pphoto;
+        }
 
         $product->save();
 
@@ -85,7 +142,11 @@ class ProductController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $pageTitle = 'Product Detail';
+
+        $product = Product::find($id);
+
+        return view('admin.showProduct', compact('pageTitle', 'product'));
     }
 
     /**
@@ -93,7 +154,13 @@ class ProductController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $pageTitle = 'Product Edit';
+
+        $types = Type::all();
+
+        $product = Product::find($id);
+
+        return view('admin.editProduct', compact('pageTitle', 'types', 'product'));
     }
 
     /**
@@ -101,7 +168,31 @@ class ProductController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $product = Product::find($id);
+        $product->pname = $request->pName;
+        $product->pdesc = $request->pDesc;
+        $product->pprice = $request->pPrice;
+        $product->type_id = $request->type;
+
+        $file = $request->file('pPhoto');
+
+        if ($file != null) {
+            if ($product->Pphoto) {
+                Storage::delete('public/images/' . $product->Pphoto);
+            }
+            $Pphoto = $file->getClientOriginalName();
+
+            // Store File
+            $file->storeAs('public/images', $Pphoto);
+        }
+
+        if ($file != null) {
+            $product->pphoto = $Pphoto;
+        }
+
+        $product->save();
+
+        return redirect()->route('products.index');
     }
 
     /**
@@ -109,6 +200,14 @@ class ProductController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $product = Product::find($id);
+
+        if ($product->Pphoto) {
+            Storage::delete('public/images/' . $product->Pphoto);
+        }
+
+        $product->delete();
+
+        return redirect()->route('products.index');
     }
 }

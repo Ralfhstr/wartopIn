@@ -13,7 +13,6 @@ return new class extends Migration
     {
         Schema::table('products', function (Blueprint $table) {
             $table->string('pdesc')->after('pname');
-            $table->string('pphoto')->after('pdesc');
             $table->integer('pprice')->after('pphoto');
         });
     }
@@ -25,7 +24,6 @@ return new class extends Migration
     {
         Schema::table('products', function (Blueprint $table) {
             $table->string('pdesc')->after('pname');
-            $table->string('pphoto')->after('pdesc');
             $table->integer('pprice')->after('pphoto');
         });
     }
