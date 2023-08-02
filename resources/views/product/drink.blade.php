@@ -59,13 +59,14 @@
             </div>
             <hr>
             <div class="row">
-                @foreach ($products as $product)
+                @foreach ($drinks as $drink)
                     <div class="card" style="width: 18rem;">
-                        <img src="{{ $product->pphoto }}" class="card-img-top" alt="...">
-                        <div class="card-body">
-                        <h5 class="card-title">{{ $product->pname }}</h5>
-                        <p class="card-text">{{ $product->pprice }}</p>
-                        <p class="btn-holder"><a href="{{ route('add_to_cart', $product->id) }}" class="btn btn-primary btn-block text-center" role="button">Add to cart</a> </p>
+                        <img src="{{ $drink->pphoto }}" class="card-img-top" alt="...">
+                        <div class="card-body text-center">
+                            <h3 class="card-title">{{ $drink->pname }}</h3>
+                            <p class="card-text">{{ $drink->pdesc }}</p>
+                            <p class="card-text">Rp.{{ $drink->pprice }}</p>
+                            <p class="btn-holder"><a href="{{ route('add_to_cart', $drink->id) }}" class="btn btn-primary btn-block text-center" role="button">Add to cart</a></p>
                         </div>
                     </div>
                 @endforeach
