@@ -1,6 +1,11 @@
 @extends('layouts.app')
 
 @section('content')
+<style>
+    .font {
+        color:#FFF500
+    }
+</style>
 <div class="row">
     <div class="col-md-3">
         @include('layouts.sidebaradmin')
@@ -9,7 +14,7 @@
         <div class="container mt-4">
             <div class="row mb-0">
                 <div class="col-lg-9 col-xl-6">
-                    <h4 class="mb-3">{{ $pageTitle }}</h4>
+                    <h1 class="mb-3">{{ $pageTitle }}</h1>
                 </div>
             </div>
             <div class="col-lg-3 col-xl-6">
@@ -24,12 +29,22 @@
             <hr>
             <div class="row">
                 @foreach ($products as $product)
-                    <div class="card" style="width: 18rem;">
-                        <img src="{{ $product->pphoto }}" class="card-img-top" alt="...">
-                        <div class="card-body">
-                        <h5 class="card-title">{{ $product->pname }}</h5>
-                        <p class="card-text">{{ $product->pprice }}</p>
-                        <p class="btn-holder"><a href="{{ route('add_to_cart', $product->id) }}" class="btn btn-primary btn-block text-center" role="button">Add to cart</a> </p>
+                    <div class="card datatable align-items-center" style="width: 18rem; border-radius:30px;margin: 0 30px">
+                        <img src="{{ asset('storage/images/' . $product->pphoto) }}" class="rounded-circle mx-3 my-3" alt="..." width="80%">
+                        <div class="card-body text-center">
+                        <h3 class="card-title">{{ $product->pname }}</h3>
+                        <h4 class="card-text">Rp.{{ $product->pprice }}</h4>
+                        <a href="{{ route('products.show', ['product' => $product->id]) }}" class="btn btn-outline-dark btn-sm me-2"><i class="fa-solid fa-circle-info"></i></a>
+                        <a href="{{ route('products.edit', ['product' => $product->id]) }}" class="btn btn-outline-dark btn-sm me-2"><i class="bi-pencil-square"></i></a>
+                        <div>
+                            <form action="{{ route('products.destroy', ['product' => $product->id]) }}" method="POST">
+                                @csrf
+                                @method('delete')
+                                <button type="submit" class="btn btn-outline-dark btn-sm me-2 btn-delete" data-name="{{ $product->pname }}">
+                                    <i class="bi-trash"></i>
+                                </button>
+                            </form>
+                        </div>
                         </div>
                     </div>
                 @endforeach

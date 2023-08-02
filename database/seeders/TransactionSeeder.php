@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use App\Models\Transaction;
 use Illuminate\Support\Facades\DB;
 
 class TransactionSeeder extends Seeder
@@ -13,14 +14,15 @@ class TransactionSeeder extends Seeder
      */
     public function run(): void
     {
-        DB::table('transactions')->insert([
-            [
-                'user_id' => 1,
-                'product_id' => 7,
-                'tqty'=> '20',
-                'payment_id'=> 1,
-                'status_id' => 1
-            ],
+        Transaction::factory()->count(5)->create();
+        // DB::table('transactions')->insert([
+        //     [
+        //         'user_id' => 1,
+        //         'product_id' => 7,
+        //         'tqty'=> '20',
+        //         'payment_id'=> 1,
+        //         'status_id' => 1
+        //     ],
             // [
             //     'pname' => 'Pop Ice',
             //     'pprice' => 'Rp. 4.000',
@@ -35,6 +37,6 @@ class TransactionSeeder extends Seeder
             //     'pphoto'=> 'prek.jpg',
             //     'type_id' => 3
             // ],
-        ]);
+        // ]);
     }
 }

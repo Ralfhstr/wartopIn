@@ -5,6 +5,9 @@
     #selectedMethod {
         display: none;
     }
+    body{
+        background-color: black;
+    }
 </style>
 <div class="container mt-5">
   <div class="card">
@@ -28,7 +31,7 @@
               <td data-th="Product">
                 <div class="row">
                   <div class="col-sm-3 hidden-xs">
-                    <img src="{{ asset('img') }}/{{ $details['pphoto'] }}" width="100" height="100" class="img-responsive" />
+                    <img src="{{ asset('storage/images/' . $details['pphoto']) }}" width="100" height="100" class="img-responsive" />
                   </div>
                   <div class="col-sm-9">
                     <h4 class="nomargin">{{ $details['pname'] }}</h4>
@@ -53,6 +56,14 @@
             <td colspan="5" style="text-align:right;"><h3><strong>Total Rp.{{ $total }}</strong></h3></td>
           </tr>
           <tr>
+            <td colspan="5">
+                <div class="d-flex justify-content-end">
+                    <button type="button" class="btn btn-primary m-1" onclick="selectCash()"><i class="fas fa-money-bill" style="margin-right: 5px;"></i> Tunai</button>
+                    <button type="button" class="btn btn-primary m-1" onclick="selectQRIS()"><i class="fas fa-qrcode" style="margin-right: 5px;"></i> QRIS</button>
+                </div>
+            </td>
+          </tr>
+          <tr>
             <td colspan="5" style="text-align:right;">
               <form action="/session" method="POST">
                 <a href="{{ route('products.food') }}" class="btn btn-danger"> <i class="fa fa-arrow-left"></i> Continue Shopping</a>
@@ -62,19 +73,6 @@
             </td>
           </tr>
           <tr>
-            <td>
-                <div class="btn-group d-flex">
-                    <button type="button" class="btn btn-primary flex-fill mr-1" onclick="selectCash()">Tunai</button>
-                    <button type="button" class="btn btn-primary flex-fill ml-1" onclick="selectQRIS()">QRIS</button>
-                  </div>
-                {{-- <label for="pymt" class="form-label">Type</label>
-                <select name="pymt" id="pymt" class="form-select">
-                  @foreach ($payments as $payment)
-                      <option value="{{ $payment->id }}" {{ old('payment') == $payment->id ? 'selected' : '' }}>{{ $payment->pyname}}</option>
-                  @endforeach
-                </select> --}}
-
-            </td>
           </tr>
         </tfoot>
       </table>

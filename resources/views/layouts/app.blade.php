@@ -16,10 +16,12 @@
 
 
     <!-- Scripts -->
-    @vite(['resources/sass/app.scss', 'resources/js/app.js', 'resources/css/app.css'])
+    @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 </head>
 <body>
     @yield('content')
     @yield('scripts')
+    @include('sweetalert::alert')
+    @stack('scripts')
 </body>
 </html>

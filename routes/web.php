@@ -23,17 +23,25 @@ Route::get('/', function () {
     return view('auth.login');
 });
 
+Auth::routes();
+
 Route::resource('products', ProductController::class);
 
 Route::resource('transactions', TransactionController::class);
 
-Auth::routes();
-
 Route::get('/transaction', [App\Http\Controllers\TransactionController::class, 'index'])->name('transaction');
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
 Route::post('/login', [LoginController::class, 'authenticate']);
+
+Route::prefix('admin')->middleware(['auth', 'admin'])->group(function(){
+    Route::get('/products', [App\Http\Controllers\TransactionController::class, 'gProduct'])->name('transactions.gProducts');
+    Route::get('exportExcel', [TransactionController::class, 'exportExcel'])->name('transactions.exportExcel');
+    Route::get('exportPdf', [TransactionController::class, 'exportPdf'])->name('transactions.exportPdf');
+});
+
+
+Route::prefix('user')->middleware(['auth', 'user'])->group(function(){
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::get('/foods', [ProductController::class, 'food'])->name('products.food');
 Route::get('/drinks', [ProductController::class, 'drink'])->name('products.drink');
@@ -47,5 +55,10 @@ Route::get('/', [ProductController::class, 'index']);
 Route::get('add-to-cart/{id}', [ProductController::class, 'addToCart'])->name('add_to_cart');
 Route::patch('update-cart', [ProductController::class, 'updateCart'])->name('update_cart');
 Route::delete('remove-from-cart', [ProductController::class, 'removeCart'])->name('remove_from_cart');
+});
 
-Route::post('/transactions', [TransactionController::class, 'store'])->name('transactions.store');
+Route::get('getTransactions', [TransactionController::class, 'getData'])->name('transactions.getData');
+
+// Route::post('/transactions', [TransactionController::class, 'store'])->name('transactions.store');
+
+
