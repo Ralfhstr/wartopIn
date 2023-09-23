@@ -6,10 +6,10 @@
         color:#FFF500
     }
 </style>
-<div class="row">
-    <div class="col-md-3">
-        @include('layouts.sidebaradmin')
-    </div>
+    <div class="row">
+        <div class="col-md-3">
+            @include('layouts.sidebaradmin')
+        </div>
     <div class="col-md-8 my-5">
         <div class="container mt-4">
             <div class="row mb-0">
