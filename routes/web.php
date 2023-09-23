@@ -41,20 +41,20 @@ Route::prefix('admin')->middleware(['auth', 'admin'])->group(function(){
 
 
 Route::prefix('user')->middleware(['auth', 'user'])->group(function(){
+
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+    Route::get('/foods', [ProductController::class, 'food'])->name('products.food');
+    Route::get('/drinks', [ProductController::class, 'drink'])->name('products.drink');
+    Route::get('/snacks', [ProductController::class, 'snack'])->name('products.snack');
 
-Route::get('/foods', [ProductController::class, 'food'])->name('products.food');
-Route::get('/drinks', [ProductController::class, 'drink'])->name('products.drink');
-Route::get('/snacks', [ProductController::class, 'snack'])->name('products.snack');
+    Route::post('/session', [StripeController::class, 'session'])->name('session');
+    Route::get('/success', [StripeController::class, 'success'])->name('success');
+    Route::get('/cancel', [StripeController::class, 'cancel'])->name('cancel');
 
-Route::post('/session', [StripeController::class, 'session'])->name('session');
-Route::get('/success', [StripeController::class, 'success'])->name('success');
-Route::get('/cancel', [StripeController::class, 'cancel'])->name('cancel');
-
-Route::get('/', [ProductController::class, 'index']);
-Route::get('add-to-cart/{id}', [ProductController::class, 'addToCart'])->name('add_to_cart');
-Route::patch('update-cart', [ProductController::class, 'updateCart'])->name('update_cart');
-Route::delete('remove-from-cart', [ProductController::class, 'removeCart'])->name('remove_from_cart');
+    Route::get('/', [ProductController::class, 'index']);
+    Route::get('add-to-cart/{id}', [ProductController::class, 'addToCart'])->name('add_to_cart');
+    Route::patch('update-cart', [ProductController::class, 'updateCart'])->name('update_cart');
+    Route::delete('remove-from-cart', [ProductController::class, 'removeCart'])->name('remove_from_cart');
 });
 
 Route::get('getTransactions', [TransactionController::class, 'getData'])->name('transactions.getData');
